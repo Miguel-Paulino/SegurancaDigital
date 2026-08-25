@@ -48,14 +48,15 @@ function criarSenha() {
   let charset = opcoes.map(chave => sets[chave]).join('');
   let senha = '';
 
-  if (checkboxes[0].checked) {
-    const indice = Math.floor(Math.random() * sets.numero.length);
-    senha += sets.numero[indice];
-  }
-
-  for (let i = senha.length; i < tamanho; i += 1) {
+  for (let i = 0; i < tamanho; i += 1) {
     const indice = Math.floor(Math.random() * charset.length);
     senha += charset[indice];
+  }
+
+  if (checkboxes[0].checked && !/\d/.test(senha)) {
+    const indiceNumero = Math.floor(Math.random() * sets.numero.length);
+    const posicao = Math.floor(Math.random() * senha.length);
+    senha = senha.slice(0, posicao) + sets.numero[indiceNumero] + senha.slice(posicao + 1);
   }
 
   return senha;
