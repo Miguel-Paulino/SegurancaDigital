@@ -10,7 +10,6 @@ const checkboxMaiusculo = document.querySelector('#maiusculo');
 const checkboxMinusculo = document.querySelector('#minusculo');
 const checkboxNumero = document.querySelector('#numero');
 const checkboxSimbolo = document.querySelector('#simbolo');
-const checkboxes = [checkboxNumero, checkboxMaiusculo, checkboxMinusculo, checkboxSimbolo];
 
 const sets = {
   maiusculo: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -53,7 +52,7 @@ function criarSenha() {
     senha += charset[indice];
   }
 
-  if (checkboxes[0].checked && !/\d/.test(senha)) {
+  if (checkboxNumero.checked && !/\d/.test(senha)) {
     const indiceNumero = Math.floor(Math.random() * sets.numero.length);
     const posicao = Math.floor(Math.random() * senha.length);
     senha = senha.slice(0, posicao) + sets.numero[indiceNumero] + senha.slice(posicao + 1);
