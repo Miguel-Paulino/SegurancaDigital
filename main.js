@@ -47,18 +47,27 @@ function criarSenha() {
   let charset = opcoes.map(chave => sets[chave]).join('');
   let senha = '';
 
+  for (const opcao of opcoes) {
+    const indice = Math.floor(Math.random() * sets[opcao].length);
+    senha += sets[opcao][indice];
+  }
+
   for (let i = 0; i < tamanho; i += 1) {
+    if (senha.length >= tamanho) {
+      break;
+    }
+
     const indice = Math.floor(Math.random() * charset.length);
     senha += charset[indice];
   }
 
-  if (checkboxNumero.checked && !/\d/.test(senha)) {
-    const indiceNumero = Math.floor(Math.random() * sets.numero.length);
-    const posicao = Math.floor(Math.random() * senha.length);
-    senha = senha.slice(0, posicao) + sets.numero[indiceNumero] + senha.slice(posicao + 1);
+  senha = senha.split('');
+  for (let indice = senha.length - 1; indice > 0; indice -= 1) {
+    const posicao = Math.floor(Math.random() * (indice + 1));
+    [senha[indice], senha[posicao]] = [senha[posicao], senha[indice]];
   }
 
-  return senha;
+  return senha.join('');
 }
 
 function definirForca(senha) {
