@@ -47,7 +47,12 @@ function criarSenha() {
   let charset = opcoes.map(chave => sets[chave]).join('');
   let senha = '';
 
-  for (let i = 0; i < tamanho; i += 1) {
+  if (checkboxNumero.checked) {
+    const indice = Math.floor(Math.random() * sets.numero.length);
+    senha += sets.numero[indice];
+  }
+
+  for (let i = senha.length; i < tamanho; i += 1) {
     const indice = Math.floor(Math.random() * charset.length);
     senha += charset[indice];
   }
