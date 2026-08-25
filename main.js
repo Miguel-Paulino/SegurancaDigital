@@ -18,8 +18,8 @@ const sets = {
   simbolo: '!@#$%^&*()_+[]{}|;:,.<>?/'
 };
 
-const minLength = 4;
-const maxLength = 32;
+const minLength = 6;
+const maxLength = 20;
 let tamanho = 12;
 
 function atualizarTamanho() {
