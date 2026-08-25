@@ -45,17 +45,27 @@ function criarSenha() {
   }
 
   const charset = opcoes.map(chave => sets[chave]).join('');
-  let senha = opcoes.map(chave => {
+  const sortearCaractere = chave => {
     const caracteres = sets[chave];
     return caracteres[Math.floor(Math.random() * caracteres.length)];
-  }).join('');
+  };
+  let senha = '';
+
+  if (checkboxNumero.checked) {
+    senha += sortearCaractere('numero');
+  }
+
+  for (const opcao of opcoes) {
+    if (opcao !== 'numero') {
+      senha += sortearCaractere(opcao);
+    }
+  }
 
   for (let i = senha.length; i < tamanho; i += 1) {
     const indice = Math.floor(Math.random() * charset.length);
     senha += charset[indice];
   }
 
-  // Embaralha para que os caracteres obrigatórios não fiquem sempre no início.
   const caracteres = senha.split('');
   for (let i = caracteres.length - 1; i > 0; i -= 1) {
     const indice = Math.floor(Math.random() * (i + 1));
