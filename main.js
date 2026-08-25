@@ -44,30 +44,25 @@ function criarSenha() {
     return '';
   }
 
-  let charset = opcoes.map(chave => sets[chave]).join('');
-  let senha = '';
+  const charset = opcoes.map(chave => sets[chave]).join('');
+  let senha = opcoes.map(chave => {
+    const caracteres = sets[chave];
+    return caracteres[Math.floor(Math.random() * caracteres.length)];
+  }).join('');
 
-  for (const opcao of opcoes) {
-    const indice = Math.floor(Math.random() * sets[opcao].length);
-    senha += sets[opcao][indice];
-  }
-
-  for (let i = 0; i < tamanho; i += 1) {
-    if (senha.length >= tamanho) {
-      break;
-    }
-
+  for (let i = senha.length; i < tamanho; i += 1) {
     const indice = Math.floor(Math.random() * charset.length);
     senha += charset[indice];
   }
 
-  senha = senha.split('');
-  for (let indice = senha.length - 1; indice > 0; indice -= 1) {
-    const posicao = Math.floor(Math.random() * (indice + 1));
-    [senha[indice], senha[posicao]] = [senha[posicao], senha[indice]];
+  // Embaralha para que os caracteres obrigatórios não fiquem sempre no início.
+  const caracteres = senha.split('');
+  for (let i = caracteres.length - 1; i > 0; i -= 1) {
+    const indice = Math.floor(Math.random() * (i + 1));
+    [caracteres[i], caracteres[indice]] = [caracteres[indice], caracteres[i]];
   }
 
-  return senha.join('');
+  return caracteres.join('');
 }
 
 function definirForca(senha) {
