@@ -1,3 +1,7 @@
+integrantes:
+Miguel Angelo Paulino Constantino
+Nathan Eduardo de Lorenzi
+Turma: 3 k 
 const campoSenha = document.querySelector('#campo-senha');
 const botaoGerar = document.querySelector('#botao-gerar');
 const botaoCopiar = document.querySelector('#botao-copiar');
